@@ -1,0 +1,49 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3 {
+    color: #333;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+}
+
+.map {
+    height: 600px;
+    width: 100%;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+}
+
+.vessel-marker {
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+}
+
+.vessel-1 {
+    background-color: red;
+}
+
+.vessel-2 {
+    background-color: blue;
+}
+
+.vessel-3 {
+    background-color: green;
+}
+
+.vessel-4 {
+    background-color: orange;
+}
+
+.vessel-5 {
+    background-color: purple;
+}
