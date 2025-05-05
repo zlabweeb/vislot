@@ -1,0 +1,29 @@
+@app.callback(
+    [Output('geofence-layer', 'children'),
+     Output('geofence-data', 'children')],
+    [Input('draw', 'geojson')],
+    prevent_initial_call=True
+)
+def handle_geofence(geojson):
+    if not geojson:
+        return dash.no_update, dash.no_update  # Ensure valid return type
+
+    if 'features' in geojson and len(geojson['features']) > 0:
+        feature = geojson['features'][-1]  # Get the last drawn feature
+        if feature['geometry']['type'] in ['Polygon', 'Rectangle']:
+            coordinates = feature['geometry']['coordinates'][0]
+            # Convert coordinates from [lon, lat] to [lat, lon] format
+            geofence = [[lat, lon] for lon, lat in coordinates]
+            
+            # Create polygon layer
+            polygon = dl.Polygon(
+                positions=geofence,
+                color='#3388ff',
+                fillColor='#3388ff',
+                fillOpacity=0.1,
+                weight=2
+            )
+            
+            return [polygon], json.dumps(geofence)
+
+    return [], None  # Return empty outputs if no valid feature is found
